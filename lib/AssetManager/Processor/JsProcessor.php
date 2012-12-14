@@ -41,4 +41,15 @@ class JsProcessor extends Processor {
     }
     $this->compiled_file_contents = $output;
   }
+
+  /**
+   * Minify JavaScript
+   *
+   * @param string $source
+   * @return string
+   * @author 
+   **/
+  public static function minify ($source) {
+
+  }
 }

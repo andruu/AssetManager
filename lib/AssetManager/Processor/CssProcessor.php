@@ -51,4 +51,15 @@ class CssProcessor extends Processor {
     }
     $this->compiled_file_contents = $output;
   }
+
+  /**
+   * Minify CSS
+   *
+   * @param string $source
+   * @return string
+   * @author 
+   **/
+  public static function minify ($source) {
+
+  }
 }

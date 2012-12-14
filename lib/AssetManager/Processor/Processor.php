@@ -77,6 +77,8 @@ class Processor {
    **/
   public function __construct ($file_name, $type, Array $config = []) {
 
+    $this->original_file_name = $file_name;
+
     // Check if file_name contains directory separator
     if (preg_match('/\//', $file_name)) {
       $pieces = explode('/', $file_name);
@@ -148,19 +150,6 @@ class Processor {
   }
 
   /**
-   * Recursively make directory
-   *
-   * @param string $dir Directory to make
-   * @return void
-   * @author 
-   **/
-  public static function makeDir ($dir) {
-    if (!is_dir($dir)) {
-      mkdir($dir, 0777, true);
-    }
-  }
-
-  /**
    * Writes concatinated file to public path
    *
    * @param array $assets Array of assets
@@ -173,7 +162,8 @@ class Processor {
 
     foreach ($assets as $asset) {
       $asset->process();
-      $file_contents .= "/* {$asset->file['file_path']} */\n";
+      $file_name = str_replace($type, $asset->file['extension'], $asset->original_file_name);
+      $file_contents .= "/* {$file_name} */\n";
       $file_contents .= $asset->compiled_file_contents . "\n";
     }
 
@@ -182,6 +172,19 @@ class Processor {
     self::makeDir($out_dir);
 
     file_put_contents($out_dir . DS . $concat_file_name . '.' . $type, $file_contents);
+  }
+
+  /**
+   * Recursively make directory
+   *
+   * @param string $dir Directory to make
+   * @return void
+   * @author 
+   **/
+  public static function makeDir ($dir) {
+    if (!is_dir($dir)) {
+      mkdir($dir, 0777, true);
+    }
   }
 
   /**

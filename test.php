@@ -1,6 +1,7 @@
 <?php 
 define('DS', DIRECTORY_SEPARATOR);
-define('ENVIRONMENT', 'DEVELOPMENT');
+// define('ENVIRONMENT', 'DEVELOPMENT');
+define('ENVIRONMENT', 'PRODUCTION');
 define('THEME', 'PetFlow');
 
 require_once 'vendor/autoload.php';
@@ -33,6 +34,10 @@ $request = new AssetManager\Request($assetManagerConfig);
 // Handle multiple assets
 $request->route(['application.css', 'products/new.css', 'products/index.css', 'products/show.css']);
 $request->route(['application.js', 'products/index.js']);
+
+// {{ javascript_include(['application.js', 'products/index.js']) }}
+// <script src="/javascripts/8923674623467832674678234_08787893.js"></script>
+
 die;
 
 // JavaScript
