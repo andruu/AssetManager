@@ -12,6 +12,8 @@ namespace AssetManager\Processor;
 
 class CssProcessor extends Processor {
 
+  protected $compiledFileContents;
+
   public function process () {
 
     switch ($this->file['extension']) {
@@ -31,6 +33,6 @@ class CssProcessor extends Processor {
         $output = $this->fileContents();
         break;
     }
-    echo $output;
+    $this->compiledFileContents = $output;
   }
 }

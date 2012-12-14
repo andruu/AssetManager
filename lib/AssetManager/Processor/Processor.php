@@ -18,6 +18,7 @@ class Processor {
   protected $config;
   protected $type;
   protected $assets_path;
+  protected $subDirectory;
 
   public function __construct ($file_name, $type, Array $config = []) {
 
@@ -26,6 +27,7 @@ class Processor {
       $pieces = explode('/', $file_name);
       $file_name = $pieces[count($pieces) - 1];
       foreach (range(0,count($pieces) - 2) as $c) {
+        $this->subDirectory .= DS . $pieces[$c];
         $config['assets'][$type] .= DS . $pieces[$c];
       }
     }
@@ -61,6 +63,20 @@ class Processor {
 
   public function output () {
     
+    // Figure out public directory
+    if ($this->subDirectory) {
+      $out_dir = $this->config['public'][$this->type] . $this->subDirectory;
+    } else {
+      $out_dir = $this->config['public'][$this->type];
+    }
+    
+    // Create public directory if it doesn't exist
+    if (!is_dir($out_dir)) {
+      mkdir($out_dir, 0777, true);
+    }
+    
+    // Write file to directory
+    file_put_contents($out_dir . DS . $this->file_name, $this->compiledFileContents);
   }
 
   public function read_dir () {
