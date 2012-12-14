@@ -68,7 +68,7 @@ class Processor {
   protected $sub_directory;
 
   /**
-   * Constructor set's up instance variables
+   * Constructor sets up instance variables
    *
    * @param string $file_name Name of file
    * @param string $type Type of file

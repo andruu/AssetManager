@@ -26,7 +26,7 @@ class Request {
   protected $config;
 
   /**
-   * Constructor set's up instance variables
+   * Constructor sets up instance variables
    *
    * @param array $config Configuration
    * @return void
