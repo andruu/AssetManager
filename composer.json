@@ -1,0 +1,14 @@
+{
+    "name": "andrew/asset-manager",
+    "authors": [
+        {
+            "name": "andruu",
+            "email": "andru.weir@gmail.com"
+        }
+    ],
+    "require": {
+      "coffeescript/coffeescript": "dev-master",
+      "richthegeek/phpsass": "dev-master",
+      "leafo/lessphp": "dev-master"
+    }
+}
