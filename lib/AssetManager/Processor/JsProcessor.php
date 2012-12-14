@@ -10,10 +10,26 @@
 
 namespace AssetManager\Processor;
 
+/**
+ * JsProcessor class to manage the compilation of JavaScript assets
+ *
+ * @package eGloo/AssetManager
+ * @author Andrew Weir <andru.weir@gmail.com>
+ **/
 class JsProcessor extends Processor {
 
+  /**
+   * Contents of compiled file
+   *
+   * @var string
+   **/
   protected $compiled_file_contents;
 
+  /**
+   * Compiles and processes asset
+   *
+   * @return void
+   **/
   public function process () {
     switch ($this->file['extension']) {
       case 'coffee':

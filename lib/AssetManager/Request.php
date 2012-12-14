@@ -10,14 +10,36 @@
 
 namespace AssetManager;
 
+/**
+ * Request class to manage the routing of assets based on type
+ *
+ * @package eGloo/AssetManager
+ * @author Andrew Weir <andru.weir@gmail.com>
+ **/
 class Request {
 
+  /**
+   * Configuration
+   *
+   * @var array
+   **/
   protected $config;
 
+  /**
+   * Constructor set's up instance variables
+   *
+   * @param array $config Configuration
+   * @return void
+   **/
   public function __construct (Array $config = []) {
     $this->config = $config;
   }
 
+  /**
+   * Route assets based on file type
+   *
+   * @return void
+   **/
   public function route ($file_name) {
     if (preg_match("/\.js|\.css$/", $file_name, $matches)) {
       $type = substr($matches[0], 1);

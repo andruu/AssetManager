@@ -10,10 +10,26 @@
 
 namespace AssetManager\Processor;
 
+/**
+ * CssProcessor class to manage the compilation of CSS assets
+ *
+ * @package eGloo/AssetManager
+ * @author Andrew Weir <andru.weir@gmail.com>
+ **/
 class CssProcessor extends Processor {
 
+    /**
+   * Contents of compiled file
+   *
+   * @var string
+   **/
   protected $compiled_file_contents;
 
+  /**
+   * Compiles and processes asset
+   *
+   * @return void
+   **/
   public function process () {
 
     switch ($this->file['extension']) {

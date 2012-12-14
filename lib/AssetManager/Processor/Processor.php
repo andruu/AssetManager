@@ -10,16 +10,71 @@
 
 namespace AssetManager\Processor;
 
+/**
+ * Processor class to manage reading/write assets and their directories
+ *
+ * @package eGloo/AssetManager
+ * @author Andrew Weir <andru.weir@gmail.com>
+ **/
 class Processor {
 
+  /**
+   * Contains file, file_path and extension
+   *
+   * @var array
+   **/
   protected $file;
+
+  /**
+   * Name of the file including extension
+   *
+   * @var string
+   **/
   protected $file_name;
+
+  /**
+   * Name of file excluding extension
+   *
+   * @var string
+   **/  
   protected $file_name_no_ext;
+
+  /**
+   * Configuration
+   *
+   * @var array
+   **/
   protected $config;
+  
+  /**
+   * Type of asset (css/js)
+   *
+   * @var string
+   **/
   protected $type;
+
+  /**
+   * Path to assets in application
+   *
+   * @var string
+   **/  
   protected $assets_path;
+
+  /**
+   * Sub directory(ies) of file
+   *
+   * @var string
+   **/  
   protected $sub_directory;
 
+  /**
+   * Constructor set's up instance variables
+   *
+   * @param string $file_name Name of file
+   * @param string $type Type of file
+   * @param array $config Configuration
+   * @return void
+   **/
   public function __construct ($file_name, $type, Array $config = []) {
 
     // Check if file_name contains directory separator
@@ -43,6 +98,11 @@ class Processor {
 
   }
 
+  /**
+   * Finds file in asset path
+   *
+   * @return void
+   **/
   public function findFile () {
     $possible_files = array_map(function ($ext) {
       return $this->file_name_no_ext . '.' . $ext;
@@ -57,10 +117,20 @@ class Processor {
     }
   }
 
+  /**
+   * Reads contents of file
+   *
+   * @return string Contents of file before compilation
+   **/
   public function fileContents () {
     return file_get_contents($this->file['file_path']);
   }
 
+  /**
+   * Writes file to public path
+   *
+   * @return void
+   **/
   public function output () {
     
     // Figure out public directory
@@ -79,6 +149,11 @@ class Processor {
     file_put_contents($out_dir . DS . $this->file_name, $this->compiled_file_contents);
   }
 
+  /**
+   * Finds files in asset path excluding '.' and '..'
+   *
+   * @return array Files in asset path
+   **/
   public function readDir () {
     $handle = opendir($this->assets_path);
     $files_in_dir = [];
