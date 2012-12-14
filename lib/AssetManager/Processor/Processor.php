@@ -18,7 +18,7 @@ class Processor {
   protected $config;
   protected $type;
   protected $assets_path;
-  protected $subDirectory;
+  protected $sub_directory;
 
   public function __construct ($file_name, $type, Array $config = []) {
 
@@ -27,7 +27,7 @@ class Processor {
       $pieces = explode('/', $file_name);
       $file_name = $pieces[count($pieces) - 1];
       foreach (range(0,count($pieces) - 2) as $c) {
-        $this->subDirectory .= DS . $pieces[$c];
+        $this->sub_directory .= DS . $pieces[$c];
         $config['assets'][$type] .= DS . $pieces[$c];
       }
     }
@@ -48,7 +48,7 @@ class Processor {
       return $this->file_name_no_ext . '.' . $ext;
     }, $this->extensions);
 
-    foreach ($this->read_dir() as $file) {
+    foreach ($this->readDir() as $file) {
       if (in_array($file, $possible_files)) {
         $extension = explode('.', $file)[count(explode('.', $file)) - 1];
         $this->file = ['file' => $file, 'file_path' => $this->assets_path . DS . $file, 'extension' => $extension];
@@ -64,8 +64,8 @@ class Processor {
   public function output () {
     
     // Figure out public directory
-    if ($this->subDirectory) {
-      $out_dir = $this->config['public'][$this->type] . $this->subDirectory;
+    if ($this->sub_directory) {
+      $out_dir = $this->config['public'][$this->type] . $this->sub_directory;
     } else {
       $out_dir = $this->config['public'][$this->type];
     }
@@ -76,10 +76,10 @@ class Processor {
     }
     
     // Write file to directory
-    file_put_contents($out_dir . DS . $this->file_name, $this->compiledFileContents);
+    file_put_contents($out_dir . DS . $this->file_name, $this->compiled_file_contents);
   }
 
-  public function read_dir () {
+  public function readDir () {
     $handle = opendir($this->assets_path);
     $files_in_dir = [];
     while (false !== ($file = readdir($handle))) {

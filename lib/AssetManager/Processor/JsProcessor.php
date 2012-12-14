@@ -12,7 +12,7 @@ namespace AssetManager\Processor;
 
 class JsProcessor extends Processor {
 
-  protected $compiledFileContents;
+  protected $compiled_file_contents;
 
   public function process () {
     switch ($this->file['extension']) {
@@ -23,6 +23,6 @@ class JsProcessor extends Processor {
         $output = $this->fileContents();
         break;
     }
-    $this->compiledFileContents = $output;
+    $this->compiled_file_contents = $output;
   }
 }
