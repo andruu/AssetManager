@@ -1,14 +1,29 @@
 {
-    "name": "andrew/asset-manager",
+    "name": "egloo/asset_manager",
     "authors": [
         {
-            "name": "andruu",
+            "name": "Andrew Weirs",
             "email": "andru.weir@gmail.com"
         }
     ],
+    "description": "Compiles Less, Sass, SCSS and CoffeeScript into CSS/JS and concatenates and minifies files.",
+    "keywords": [
+        "less",
+        "sass",
+        "coffeescript",
+        "sprockets"
+    ],
+    "type": "library",
+    "license": "MIT",
     "require": {
-      "coffeescript/coffeescript": "dev-master",
-      "richthegeek/phpsass": "dev-master",
-      "leafo/lessphp": "dev-master"
+        "php": ">=5.4",
+        "coffeescript/coffeescript": "dev-master",
+        "richthegeek/phpsass": "dev-master",
+        "leafo/lessphp": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "AssetManager": "lib/"
+        }
     }
 }
