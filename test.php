@@ -12,7 +12,7 @@ require_once 'lib/AssetManager/Processor/JsProcessor.php';
 // Yaml file maybe?
 $assetManagerConfig = [
   'environment' => ENVIRONMENT,
-  'orderOfImportance' => [
+  'order_of_importance' => [
     'css' => ['css', 'less', 'scss', 'sass'],
     'js'  => ['js', 'coffee']
   ],

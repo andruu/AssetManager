@@ -32,7 +32,7 @@ class Processor {
       }
     }
 
-    $this->extensions       = $config['orderOfImportance'][$type];
+    $this->extensions       = $config['order_of_importance'][$type];
     $this->file_name        = $file_name;
     $this->file_name_no_ext = substr($this->file_name, 0, -((int) strlen($type) + 1));
     $this->type             = $type;
