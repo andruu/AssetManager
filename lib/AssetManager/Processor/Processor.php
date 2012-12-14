@@ -141,12 +141,47 @@ class Processor {
     }
     
     // Create public directory if it doesn't exist
-    if (!is_dir($out_dir)) {
-      mkdir($out_dir, 0777, true);
-    }
+    self::makeDir($out_dir);
     
     // Write file to directory
     file_put_contents($out_dir . DS . $this->file_name, $this->compiled_file_contents);
+  }
+
+  /**
+   * Recursively make directory
+   *
+   * @param string $dir Directory to make
+   * @return void
+   * @author 
+   **/
+  public static function makeDir ($dir) {
+    if (!is_dir($dir)) {
+      mkdir($dir, 0777, true);
+    }
+  }
+
+  /**
+   * Writes concatinated file to public path
+   *
+   * @param array $assets Array of assets
+   * @param string $concat_file_name MD5 has of assets array
+   * @return void
+   **/
+  public static function outputContat (Array $assets = [], $concat_file_name) {
+    $file_contents = '';
+    $type = $assets[0]->type;
+
+    foreach ($assets as $asset) {
+      $asset->process();
+      $file_contents .= "/* {$asset->file['file_path']} */\n";
+      $file_contents .= $asset->compiled_file_contents . "\n";
+    }
+
+    // Create public directory if it doesn't exist
+    $out_dir = $assets[0]->config['public'][$type];
+    self::makeDir($out_dir);
+
+    file_put_contents($out_dir . DS . $concat_file_name . '.' . $type, $file_contents);
   }
 
   /**

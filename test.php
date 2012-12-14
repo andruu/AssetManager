@@ -30,6 +30,11 @@ $request = new AssetManager\Request($assetManagerConfig);
 
 // These would be called via a script that catches js/css in the web server
 
+// Handle multiple assets
+$request->route(['application.css', 'products/new.css', 'products/index.css', 'products/show.css']);
+$request->route(['application.js', 'products/index.js']);
+die;
+
 // JavaScript
 $request->route('products/index.js');
 

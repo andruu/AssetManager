@@ -33,7 +33,7 @@ class JsProcessor extends Processor {
   public function process () {
     switch ($this->file['extension']) {
       case 'coffee':
-        $output = \CoffeeScript\Compiler::compile($this->fileContents(), ['bare' => true]);
+        $output = \CoffeeScript\Compiler::compile($this->fileContents(), ['bare' => true, 'header' => false]);
         break;
       case 'js':
         $output = $this->fileContents();

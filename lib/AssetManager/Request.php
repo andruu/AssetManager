@@ -36,17 +36,43 @@ class Request {
   }
 
   /**
-   * Route assets based on file type
+   * Determine whether or not 1 or more assets are being routed
    *
+   * @param string $file_name Name of file
    * @return void
    **/
   public function route ($file_name) {
+    if (is_array($file_name)) {
+      
+      $concat_file_name = md5(serialize($file_name));
+      
+      $assets = [];
+      foreach($file_name as $file) {
+        $assets[] = $this->handleRoute($file, true, $concat_file_name);
+      }
+      
+      Processor\Processor::outputContat($assets, $concat_file_name);
+
+    } else {
+      $processor = $this->handleRoute($file_name);
+      $processor->process();
+      $processor->output();
+    }
+  }
+
+  /**
+   * Route assets based on file type
+   *
+   * @param string $file_name Name of file
+   * @return object Processor Object containing asset properties
+   **/
+  public function handleRoute ($file_name) {
     if (preg_match("/\.js|\.css$/", $file_name, $matches)) {
       $type = substr($matches[0], 1);
       $processorClassName = "AssetManager\\Processor\\" . ucfirst($type) . 'Processor';
-      $processor = new $processorClassName($file_name, $type, $this->config);
-      $processor->process();
-      $processor->output();
+      return $processor = new $processorClassName($file_name, $type, $this->config);
+    } else {
+      throw new Exception("Error Processing Request", 1);
     }
   }
 
