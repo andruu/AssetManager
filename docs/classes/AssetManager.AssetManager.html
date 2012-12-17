@@ -3,7 +3,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <meta charset="utf-8">
-<title>phpDocumentor » \AssetManager\Request</title>
+<title>phpDocumentor » \AssetManager\AssetManager</title>
 <meta name="author" content="Mike van Riel">
 <meta name="description" content="">
 <link href="../css/template.css" rel="stylesheet" media="all">
@@ -62,9 +62,10 @@
 <li class="nav-header">
 <i class="icon-custom icon-method"></i> Methods
                     <ul>
-<li class="method public "><a href="#method___construct" title="__construct :: Constructor sets up instance variables"><span class="description">Constructor sets up instance variables</span><pre>__construct()</pre></a></li>
-<li class="method public "><a href="#method_handleRoute" title="handleRoute :: Route assets based on file type"><span class="description">Route assets based on file type</span><pre>handleRoute()</pre></a></li>
-<li class="method public "><a href="#method_route" title="route :: Determine whether or not 1 or more assets are being routed"><span class="description">Determine whether or not 1 or more assets are being routed</span><pre>route()</pre></a></li>
+<li class="method public "><a href="#method_clearCache" title="clearCache :: Remove generated files in public assets directories"><span class="description">Remove generated files in public assets directories</span><pre>clearCache()</pre></a></li>
+<li class="method public "><a href="#method_init" title="init :: Initialize static class"><span class="description">Initialize static class</span><pre>init()</pre></a></li>
+<li class="method public "><a href="#method_preCompile" title="preCompile :: Precompiles assets from $config['compile_file']"><span class="description">Precompiles assets from $config['compile_file']</span><pre>preCompile()</pre></a></li>
+<li class="method public "><a href="#method_removeFiles" title="removeFiles :: Remove files from directories"><span class="description">Remove files from directories</span><pre>removeFiles()</pre></a></li>
 </ul>
 </li>
 <li class="nav-header">
@@ -77,17 +78,17 @@
 </ul>
 </div>
 <div class="span8">
-<a id="\AssetManager\Request"></a><ul class="breadcrumb">
+<a id="\AssetManager\AssetManager"></a><ul class="breadcrumb">
 <li>
 <a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
 </li>
 <li><a href="../namespaces/AssetManager.html">AssetManager</a></li>
 <li class="active">
-<span class="divider">\</span><a href="../classes/AssetManager.Request.html">Request</a>
+<span class="divider">\</span><a href="../classes/AssetManager.AssetManager.html">AssetManager</a>
 </li>
 </ul>
 <div class="element class">
-<p class="short_description">Request class to manage the routing of assets based on type</p>
+<p class="short_description">General methods to assist in asset management</p>
 <div class="details">
 <div class="long_description"></div>
 <table class="table table-bordered">
@@ -102,43 +103,43 @@
 </table>
 <h3>
 <i class="icon-custom icon-method"></i> Methods</h3>
-<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
-<h2>Constructor sets up instance variables</h2>
-<pre>__construct(array $config) : void</pre>
-<div class="labels"></div>
+<a id="method_clearCache"></a><div class="element clickable method public method_clearCache" data-toggle="collapse" data-target=".method_clearCache .collapse">
+<h2>Remove generated files in public assets directories</h2>
+<pre>clearCache() : void</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_init"></a><div class="element clickable method public method_init" data-toggle="collapse" data-target=".method_init .collapse">
+<h2>Initialize static class</h2>
+<pre>init(array $config) : void</pre>
+<div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
 <h4>$config</h4>
-<code>array</code><p>Configuration</p></div>
+<code>array</code><p>Configeration</p></div>
 </div></div>
 </div>
-<a id="method_handleRoute"></a><div class="element clickable method public method_handleRoute" data-toggle="collapse" data-target=".method_handleRoute .collapse">
-<h2>Route assets based on file type</h2>
-<pre>handleRoute(string $file_name) : object</pre>
-<div class="labels"></div>
+<a id="method_preCompile"></a><div class="element clickable method public method_preCompile" data-toggle="collapse" data-target=".method_preCompile .collapse">
+<h2>Precompiles assets from $config['compile_file']</h2>
+<pre>preCompile() : void</pre>
+<div class="labels"><span class="label">Static</span></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="method_removeFiles"></a><div class="element clickable method public method_removeFiles" data-toggle="collapse" data-target=".method_removeFiles .collapse">
+<h2>Remove files from directories</h2>
+<pre>removeFiles(string $dir, array $dirs) : void</pre>
+<div class="labels"><span class="label">Static</span></div>
 <div class="row collapse"><div class="detail-description">
 <div class="long_description"></div>
 <h3>Parameters</h3>
 <div class="subelement argument">
-<h4>$file_name</h4>
-<code>string</code><p>Name of file</p></div>
-<h3>Returns</h3>
-<div class="subelement response">
-<code>object</code>Processor Object containing asset properties</div>
-</div></div>
-</div>
-<a id="method_route"></a><div class="element clickable method public method_route" data-toggle="collapse" data-target=".method_route .collapse">
-<h2>Determine whether or not 1 or more assets are being routed</h2>
-<pre>route(string $file_name) : void</pre>
-<div class="labels"></div>
-<div class="row collapse"><div class="detail-description">
-<div class="long_description"></div>
-<h3>Parameters</h3>
+<h4>$dir</h4>
+<code>string</code><p>Directory</p></div>
 <div class="subelement argument">
-<h4>$file_name</h4>
-<code>string</code><p>Name of file</p></div>
+<h4>$dirs</h4>
+<code>array</code><p>Used for recursive search</p></div>
 </div></div>
 </div>
 <h3>

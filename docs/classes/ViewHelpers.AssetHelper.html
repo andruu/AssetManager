@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \ViewHelpers\AssetHelper</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/AssetManager.html"><i class="icon-th"></i> AssetManager</a></li>
+<li><a href="../namespaces/ViewHelpers.html"><i class="icon-th"></i> ViewHelpers</a></li>
+<li><a href="../namespaces/global.html"><i class="icon-th"></i> global</a></li>
+<li><a>Packages</a></li>
+<li><a href="../packages/Default.html"><i class="icon-folder-open"></i> Default</a></li>
+<li><a href="../packages/eGloo.AssetManager.html"><i class="icon-folder-open"></i> eGloo/AssetManager</a></li>
+<li><a href="../packages/eGloo.ViewHelpers.html"><i class="icon-folder-open"></i> eGloo/ViewHelpers</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">9</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods
+                    <ul>
+<li class="method public "><a href="#method___construct" title="__construct :: Constructor initializes config"><span class="description">Constructor initializes config</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#method_css_include" title="css_include :: Push css includes to array"><span class="description">Push css includes to array</span><pre>css_include()</pre></a></li>
+<li class="method public "><a href="#method_css_tag" title="css_tag :: Return css html tag"><span class="description">Return css html tag</span><pre>css_tag()</pre></a></li>
+<li class="method public "><a href="#method_js_include" title="js_include :: Push js includes to array"><span class="description">Push js includes to array</span><pre>js_include()</pre></a></li>
+<li class="method public "><a href="#method_js_tag" title="js_tag :: Return js html tag"><span class="description">Return js html tag</span><pre>js_tag()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="method private "><a href="#method___include" title="__include :: Push css/js includes to array"><span class="description">Push css/js includes to array</span><pre>__include()</pre></a></li>
+<li class="method private "><a href="#method___tag" title="__tag :: Return js/css html tag and writes to $config['compile_file'] for pre-compilation"><span class="description">Return js/css html tag and writes to $config['compile_file'] for pre-compilation</span><pre>__tag()</pre></a></li>
+<li class="method private "><a href="#method___write" title="__write :: Writes to $config['compile_file'] for pre-compilation"><span class="description">Writes to $config['compile_file'] for pre-compilation</span><pre>__write()</pre></a></li>
+</ul>
+</li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties
+                    <ul></ul>
+</li>
+<li class="nav-header private">» Private
+                    <ul>
+<li class="property private "><a href="#property_config" title="$config :: Configuration"><span class="description"></span><pre>$config</pre></a></li>
+<li class="property private "><a href="#property_css_assets" title="$css_assets :: Array of css assets"><span class="description"></span><pre>$css_assets</pre></a></li>
+<li class="property private "><a href="#property_css_template" title="$css_template :: Template for css html tag"><span class="description"></span><pre>$css_template</pre></a></li>
+<li class="property private "><a href="#property_js_assets" title="$js_assets :: Array of js assets"><span class="description"></span><pre>$js_assets</pre></a></li>
+<li class="property private "><a href="#property_js_template" title="$js_template :: Template for js html tag"><span class="description"></span><pre>$js_template</pre></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="span8">
+<a id="\ViewHelpers\AssetHelper"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/ViewHelpers.html">ViewHelpers</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/ViewHelpers.AssetHelper.html">AssetHelper</a>
+</li>
+</ul>
+<div class="element class">
+<p class="short_description">Asset Helper</p>
+<div class="details">
+<div class="long_description"></div>
+<table class="table table-bordered">
+<tr>
+<th>package</th>
+<td><a href="../packages/eGloo.ViewHelpers.html">eGloo/ViewHelpers</a></td>
+</tr>
+<tr>
+<th>author</th>
+<td><a href="mailto:andru.weir@gmail.com">Andrew Weir</a></td>
+</tr>
+</table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a id="method___construct"></a><div class="element clickable method public method___construct" data-toggle="collapse" data-target=".method___construct .collapse">
+<h2>Constructor initializes config</h2>
+<pre>__construct(array $config) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$config</h4>
+<code>array</code><p>Configuration</p></div>
+</div></div>
+</div>
+<a id="method_css_include"></a><div class="element clickable method public method_css_include" data-toggle="collapse" data-target=".method_css_include .collapse">
+<h2>Push css includes to array</h2>
+<pre>css_include(array | string $includes) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$includes</h4>
+<code>array</code><code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_css_tag"></a><div class="element clickable method public method_css_tag" data-toggle="collapse" data-target=".method_css_tag .collapse">
+<h2>Return css html tag</h2>
+<pre>css_tag() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method_js_include"></a><div class="element clickable method public method_js_include" data-toggle="collapse" data-target=".method_js_include .collapse">
+<h2>Push js includes to array</h2>
+<pre>js_include(array | string $includes) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$includes</h4>
+<code>array</code><code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method_js_tag"></a><div class="element clickable method public method_js_tag" data-toggle="collapse" data-target=".method_js_tag .collapse">
+<h2>Return js html tag</h2>
+<pre>js_tag() : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method___include"></a><div class="element clickable method private method___include" data-toggle="collapse" data-target=".method___include .collapse">
+<h2>Push css/js includes to array</h2>
+<pre>__include(array | string $includes, string $type) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$includes</h4>
+<code>array</code><code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a id="method___tag"></a><div class="element clickable method private method___tag" data-toggle="collapse" data-target=".method___tag .collapse">
+<h2>Return js/css html tag and writes to $config['compile_file'] for pre-compilation</h2>
+<pre>__tag(string $type) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a id="method___write"></a><div class="element clickable method private method___write" data-toggle="collapse" data-target=".method___write .collapse">
+<h2>Writes to $config['compile_file'] for pre-compilation</h2>
+<pre>__write(string $type) : void</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<div class="long_description"></div>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$type</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a id="property_config"> </a><div class="element clickable property private property_config" data-toggle="collapse" data-target=".property_config .collapse">
+<h2></h2>
+<pre>$config : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_css_assets"> </a><div class="element clickable property private property_css_assets" data-toggle="collapse" data-target=".property_css_assets .collapse">
+<h2></h2>
+<pre>$css_assets : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_css_template"> </a><div class="element clickable property private property_css_template" data-toggle="collapse" data-target=".property_css_template .collapse">
+<h2></h2>
+<pre>$css_template : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_js_assets"> </a><div class="element clickable property private property_js_assets" data-toggle="collapse" data-target=".property_js_assets .collapse">
+<h2></h2>
+<pre>$js_assets : array</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+<a id="property_js_template"> </a><div class="element clickable property private property_js_template" data-toggle="collapse" data-target=".property_js_template .collapse">
+<h2></h2>
+<pre>$js_template : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><div class="long_description"></div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a12</a> and<br>
+            generated on 2012-12-17T18:07:31-05:00.<br></footer></div>
+</div>
+</body>
+</html>

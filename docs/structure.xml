@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project version="2.0.0a12" title="">
-  <file path="Processor/CssProcessor.php" hash="202cfc96ad67f6aa144820e459fe90d3" package="Default">
+  <file path="AssetManager/AssetManager.php" hash="58ab0fcf0d171b7c2b193eaaf79003ff" package="Default">
+    <class final="false" abstract="false" namespace="AssetManager" line="19" package="eGloo/AssetManager">
+      <extends/>
+      <name>AssetManager</name>
+      <full_name>\AssetManager\AssetManager</full_name>
+      <docblock line="13">
+        <description>General methods to assist in asset management</description>
+        <long-description/>
+        <tag line="13" name="package" description="eGloo/AssetManager"/>
+        <tag line="13" name="author" description="Andrew Weir &lt;andru.weir@gmail.com&gt;"/>
+      </docblock>
+      <property final="false" static="true" visibility="protected" line="26" namespace="AssetManager" package="Default">
+        <name>$config</name>
+        <default/>
+        <docblock line="21">
+          <description>Configuration</description>
+          <long-description/>
+          <tag line="21" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager" line="34" package="eGloo/AssetManager">
+        <name>init</name>
+        <full_name>init</full_name>
+        <docblock line="28">
+          <description>Initialize static class</description>
+          <long-description/>
+          <tag line="28" name="param" description="Configeration" type="array" variable="$config">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="28" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$config</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager" line="43" package="eGloo/AssetManager">
+        <name>preCompile</name>
+        <full_name>preCompile</full_name>
+        <docblock line="38">
+          <description>Precompiles assets from $config['compile_file']</description>
+          <long-description/>
+          <tag line="38" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager" line="62" package="eGloo/AssetManager">
+        <name>clearCache</name>
+        <full_name>clearCache</full_name>
+        <docblock line="57">
+          <description>Remove generated files in public assets directories</description>
+          <long-description/>
+          <tag line="57" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager" line="77" package="eGloo/AssetManager">
+        <name>removeFiles</name>
+        <full_name>removeFiles</full_name>
+        <docblock line="70">
+          <description>Remove files from directories</description>
+          <long-description/>
+          <tag line="70" name="param" description="Directory" type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="70" name="param" description="Used for recursive search" type="array" variable="$dirs">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="70" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="77">
+          <name>$dir</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="77">
+          <name>$dirs</name>
+          <default>array()</default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file AssetManager/AssetManager.php</error>
+    </parse_markers>
+  </file>
+  <file path="AssetManager/Processor/CssProcessor.php" hash="21c0e4c9e105f5f752aed85cbcc1b8d7" package="Default">
     <class final="false" abstract="false" namespace="AssetManager\Processor" line="19" package="eGloo/AssetManager">
       <extends>\AssetManager\Processor\Processor</extends>
       <name>CssProcessor</name>
@@ -33,12 +128,31 @@
           </tag>
         </docblock>
       </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="61" package="eGloo/AssetManager">
+        <name>minify</name>
+        <full_name>minify</full_name>
+        <docblock line="55">
+          <description>Minify CSS</description>
+          <long-description/>
+          <tag line="55" name="param" description="" type="string" variable="$source">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="55" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$source</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
     </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file Processor/CssProcessor.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file AssetManager/Processor/CssProcessor.php</error>
     </parse_markers>
   </file>
-  <file path="Processor/JsProcessor.php" hash="b151c69d3b6073fdf64ccf0f06552f52" package="Default">
+  <file path="AssetManager/Processor/JsProcessor.php" hash="29d6b1e93ebb22c2cf3582109597c790" package="Default">
     <class final="false" abstract="false" namespace="AssetManager\Processor" line="19" package="eGloo/AssetManager">
       <extends>\AssetManager\Processor\Processor</extends>
       <name>JsProcessor</name>
@@ -71,28 +185,47 @@
           </tag>
         </docblock>
       </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="51" package="eGloo/AssetManager">
+        <name>minify</name>
+        <full_name>minify</full_name>
+        <docblock line="45">
+          <description>Minify JavaScript</description>
+          <long-description/>
+          <tag line="45" name="param" description="" type="string" variable="$source">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="45" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="51">
+          <name>$source</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
     </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file Processor/JsProcessor.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file AssetManager/Processor/JsProcessor.php</error>
     </parse_markers>
   </file>
-  <file path="Processor/Processor.php" hash="8443cce727f79ff794f0d5a7d57cfc6e" package="Default">
+  <file path="AssetManager/Processor/Processor.php" hash="c20b0d2b23442af14895ac1a62ac9b72" package="Default">
     <class final="false" abstract="false" namespace="AssetManager\Processor" line="19" package="eGloo/AssetManager">
       <extends/>
       <name>Processor</name>
       <full_name>\AssetManager\Processor\Processor</full_name>
       <docblock line="13">
         <description>Processor class to manage reading/write assets and their directories</description>
-        <long-description></long-description>
+        <long-description/>
         <tag line="13" name="package" description="eGloo/AssetManager"/>
         <tag line="13" name="author" description="Andrew Weir &lt;andru.weir@gmail.com&gt;"/>
       </docblock>
       <property final="false" static="false" visibility="protected" line="26" namespace="AssetManager\Processor" package="Default">
         <name>$file</name>
-        <default></default>
+        <default/>
         <docblock line="21">
           <description>Contains file, file_path and extension</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="21" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -100,10 +233,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="33" namespace="AssetManager\Processor" package="Default">
         <name>$file_name</name>
-        <default></default>
+        <default/>
         <docblock line="28">
           <description>Name of the file including extension</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="28" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -111,10 +244,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="40" namespace="AssetManager\Processor" package="Default">
         <name>$file_name_no_ext</name>
-        <default></default>
+        <default/>
         <docblock line="35">
           <description>Name of file excluding extension</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="35" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -122,10 +255,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="47" namespace="AssetManager\Processor" package="Default">
         <name>$config</name>
-        <default></default>
+        <default/>
         <docblock line="42">
           <description>Configuration</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="42" name="var" description="" type="array">
             <type by_reference="false">array</type>
           </tag>
@@ -133,10 +266,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="54" namespace="AssetManager\Processor" package="Default">
         <name>$type</name>
-        <default></default>
+        <default/>
         <docblock line="49">
           <description>Type of asset (css/js)</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="49" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -144,10 +277,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="61" namespace="AssetManager\Processor" package="Default">
         <name>$assets_path</name>
-        <default></default>
+        <default/>
         <docblock line="56">
           <description>Path to assets in application</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="56" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -155,10 +288,10 @@
       </property>
       <property final="false" static="false" visibility="protected" line="68" namespace="AssetManager\Processor" package="Default">
         <name>$sub_directory</name>
-        <default></default>
+        <default/>
         <docblock line="63">
           <description>Sub directory(ies) of file</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="63" name="var" description="" type="string">
             <type by_reference="false">string</type>
           </tag>
@@ -169,7 +302,7 @@
         <full_name>__construct</full_name>
         <docblock line="70">
           <description>Constructor sets up instance variables</description>
-          <long-description></long-description>
+          <long-description/>
           <tag line="70" name="param" description="Name of file" type="string" variable="$file_name">
             <type by_reference="false">string</type>
           </tag>
@@ -185,12 +318,12 @@
         </docblock>
         <argument line="78">
           <name>$file_name</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="78">
           <name>$type</name>
-          <default></default>
+          <default/>
           <type/>
         </argument>
         <argument line="78">
@@ -199,103 +332,116 @@
           <type>array</type>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="106" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="108" package="eGloo/AssetManager">
         <name>findFile</name>
         <full_name>findFile</full_name>
-        <docblock line="101">
+        <docblock line="103">
           <description>Finds file in asset path</description>
-          <long-description></long-description>
-          <tag line="101" name="return" description="" type="void">
+          <long-description/>
+          <tag line="103" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="125" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="127" package="eGloo/AssetManager">
         <name>fileContents</name>
         <full_name>fileContents</full_name>
-        <docblock line="120">
+        <docblock line="122">
           <description>Reads contents of file</description>
-          <long-description></long-description>
-          <tag line="120" name="return" description="Contents of file before compilation" type="string">
+          <long-description/>
+          <tag line="122" name="return" description="Contents of file before compilation" type="string">
             <type by_reference="false">string</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="134" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="136" package="eGloo/AssetManager">
         <name>output</name>
         <full_name>output</full_name>
-        <docblock line="129">
+        <docblock line="131">
           <description>Writes file to public path</description>
-          <long-description></long-description>
-          <tag line="129" name="return" description="" type="void">
+          <long-description/>
+          <tag line="131" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
       </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="157" package="eGloo/AssetManager">
-        <name>makeDir</name>
-        <full_name>makeDir</full_name>
-        <docblock line="150">
-          <description>Recursively make directory</description>
-          <long-description></long-description>
-          <tag line="150" name="param" description="Directory to make" type="string" variable="$dir">
-            <type by_reference="false">string</type>
-          </tag>
-          <tag line="150" name="return" description="" type="void">
-            <type by_reference="false">void</type>
-          </tag>
-          <tag line="150" name="author" description=""/>
-        </docblock>
-        <argument line="157">
-          <name>$dir</name>
-          <default></default>
-          <type/>
-        </argument>
-      </method>
-      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="170" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="181" package="eGloo/AssetManager">
         <name>outputContat</name>
         <full_name>outputContat</full_name>
-        <docblock line="163">
+        <docblock line="173">
           <description>Writes concatinated file to public path</description>
-          <long-description></long-description>
-          <tag line="163" name="param" description="Array of assets" type="array" variable="$assets">
+          <long-description/>
+          <tag line="173" name="param" description="Array of assets" type="array" variable="$assets">
             <type by_reference="false">array</type>
           </tag>
-          <tag line="163" name="param" description="MD5 has of assets array" type="string" variable="$concat_file_name">
+          <tag line="173" name="param" description="MD5 has of assets array" type="string" variable="$concat_file_name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="163" name="return" description="" type="void">
+          <tag line="173" name="param" description="Current environment" type="string" variable="$environment">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="173" name="return" description="" type="void">
             <type by_reference="false">void</type>
           </tag>
         </docblock>
-        <argument line="170">
+        <argument line="181">
           <name>$assets</name>
           <default>array()</default>
           <type>array</type>
         </argument>
-        <argument line="170">
+        <argument line="181">
           <name>$concat_file_name</name>
-          <default></default>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="181">
+          <name>$environment</name>
+          <default>'DEVELOPMENT'</default>
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager\Processor" line="192" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="218" package="eGloo/AssetManager">
+        <name>makeDir</name>
+        <full_name>makeDir</full_name>
+        <docblock line="212">
+          <description>Recursively make directory</description>
+          <long-description/>
+          <tag line="212" name="param" description="Directory to make" type="string" variable="$dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="212" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="218">
+          <name>$dir</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="AssetManager\Processor" line="229" package="eGloo/AssetManager">
         <name>readDir</name>
         <full_name>readDir</full_name>
-        <docblock line="187">
+        <docblock line="224">
           <description>Finds files in asset path excluding '.' and '.</description>
           <long-description>&lt;p&gt;.'&lt;/p&gt;</long-description>
-          <tag line="187" name="return" description="Files in asset path" type="array">
+          <tag line="224" name="return" description="Files in asset path" type="array">
             <type by_reference="false">array</type>
           </tag>
         </docblock>
+        <argument line="229">
+          <name>$path</name>
+          <default/>
+          <type/>
+        </argument>
       </method>
     </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file Processor/Processor.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file AssetManager/Processor/Processor.php</error>
+      <error line="224" code="50015">Argument $path is missing from the Docblock of readDir()</error>
     </parse_markers>
   </file>
-  <file path="Request.php" hash="ce75ecf29450cc46efa2f2f1986553b4" package="Default">
+  <file path="AssetManager/Request.php" hash="4ea7ed8e5f6b827468d2d199c6163e03" package="Default">
     <class final="false" abstract="false" namespace="AssetManager" line="19" package="eGloo/AssetManager">
       <extends/>
       <name>Request</name>
@@ -355,20 +501,20 @@
           <type/>
         </argument>
       </method>
-      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager" line="69" package="eGloo/AssetManager">
+      <method final="false" abstract="false" static="false" visibility="public" namespace="AssetManager" line="75" package="eGloo/AssetManager">
         <name>handleRoute</name>
         <full_name>handleRoute</full_name>
-        <docblock line="63">
+        <docblock line="69">
           <description>Route assets based on file type</description>
           <long-description/>
-          <tag line="63" name="param" description="Name of file" type="string" variable="$file_name">
+          <tag line="69" name="param" description="Name of file" type="string" variable="$file_name">
             <type by_reference="false">string</type>
           </tag>
-          <tag line="63" name="return" description="Processor Object containing asset properties" type="object">
+          <tag line="69" name="return" description="Processor Object containing asset properties" type="object">
             <type by_reference="false">object</type>
           </tag>
         </docblock>
-        <argument line="69">
+        <argument line="75">
           <name>$file_name</name>
           <default/>
           <type/>
@@ -376,14 +522,253 @@
       </method>
     </class>
     <parse_markers>
-      <error line="0" code="50007">No page-level DocBlock was found in file Request.php</error>
+      <error line="0" code="50007">No page-level DocBlock was found in file AssetManager/Request.php</error>
+    </parse_markers>
+  </file>
+  <file path="ViewHelpers/AssetHelper.php" hash="d11059bc6ab0b286973bf5b8b2d88b58" package="Default">
+    <include line="176" type="Require Once" package="Default">
+      <name>json_format.php</name>
+    </include>
+    <class final="false" abstract="false" namespace="ViewHelpers" line="18" package="eGloo/ViewHelpers">
+      <extends/>
+      <name>AssetHelper</name>
+      <full_name>\ViewHelpers\AssetHelper</full_name>
+      <docblock line="12">
+        <description>Asset Helper</description>
+        <long-description/>
+        <tag line="12" name="package" description="eGloo/ViewHelpers"/>
+        <tag line="12" name="author" description="Andrew Weir &lt;andru.weir@gmail.com&gt;"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="25" namespace="ViewHelpers" package="Default">
+        <name>$config</name>
+        <default/>
+        <docblock line="20">
+          <description>Configuration</description>
+          <long-description/>
+          <tag line="20" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="32" namespace="ViewHelpers" package="Default">
+        <name>$js_assets</name>
+        <default>array()</default>
+        <docblock line="27">
+          <description>Array of js assets</description>
+          <long-description/>
+          <tag line="27" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="39" namespace="ViewHelpers" package="Default">
+        <name>$css_assets</name>
+        <default>array()</default>
+        <docblock line="34">
+          <description>Array of css assets</description>
+          <long-description/>
+          <tag line="34" name="var" description="" type="array">
+            <type by_reference="false">array</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="46" namespace="ViewHelpers" package="Default">
+        <name>$js_template</name>
+        <default>'&lt;script src="__PATH__" type="text/javascript"&gt;&lt;/script&gt;'</default>
+        <docblock line="41">
+          <description>Template for js html tag</description>
+          <long-description/>
+          <tag line="41" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="53" namespace="ViewHelpers" package="Default">
+        <name>$css_template</name>
+        <default>'&lt;link href="__PATH__" media="all" rel="stylesheet" type="text/css" /&gt;'</default>
+        <docblock line="48">
+          <description>Template for css html tag</description>
+          <long-description/>
+          <tag line="48" name="var" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ViewHelpers" line="61" package="eGloo/ViewHelpers">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="55">
+          <description>Constructor initializes config</description>
+          <long-description/>
+          <tag line="55" name="param" description="Configuration" type="array" variable="$config">
+            <type by_reference="false">array</type>
+          </tag>
+          <tag line="55" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="61">
+          <name>$config</name>
+          <default>array()</default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ViewHelpers" line="71" package="eGloo/ViewHelpers">
+        <name>js_include</name>
+        <full_name>js_include</full_name>
+        <docblock line="65">
+          <description>Push js includes to array</description>
+          <long-description/>
+          <tag line="65" name="param" description="" type="array|string" variable="$includes">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="65" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="71">
+          <name>$includes</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ViewHelpers" line="81" package="eGloo/ViewHelpers">
+        <name>css_include</name>
+        <full_name>css_include</full_name>
+        <docblock line="75">
+          <description>Push css includes to array</description>
+          <long-description/>
+          <tag line="75" name="param" description="" type="array|string" variable="$includes">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="75" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$includes</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="ViewHelpers" line="92" package="eGloo/ViewHelpers">
+        <name>__include</name>
+        <full_name>__include</full_name>
+        <docblock line="85">
+          <description>Push css/js includes to array</description>
+          <long-description/>
+          <tag line="85" name="param" description="" type="array|string" variable="$includes">
+            <type by_reference="false">array</type>
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="85" name="param" description="" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="85" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="92">
+          <name>$includes</name>
+          <default/>
+          <type/>
+        </argument>
+        <argument line="92">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ViewHelpers" line="110" package="eGloo/ViewHelpers">
+        <name>js_tag</name>
+        <full_name>js_tag</full_name>
+        <docblock line="105">
+          <description>Return js html tag</description>
+          <long-description/>
+          <tag line="105" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="ViewHelpers" line="119" package="eGloo/ViewHelpers">
+        <name>css_tag</name>
+        <full_name>css_tag</full_name>
+        <docblock line="114">
+          <description>Return css html tag</description>
+          <long-description/>
+          <tag line="114" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="ViewHelpers" line="129" package="eGloo/ViewHelpers">
+        <name>__tag</name>
+        <full_name>__tag</full_name>
+        <docblock line="123">
+          <description>Return js/css html tag and writes to $config['compile_file'] for pre-compilation</description>
+          <long-description/>
+          <tag line="123" name="param" description="" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="123" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="129">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="ViewHelpers" line="175" package="eGloo/ViewHelpers">
+        <name>__write</name>
+        <full_name>__write</full_name>
+        <docblock line="169">
+          <description>Writes to $config['compile_file'] for pre-compilation</description>
+          <long-description/>
+          <tag line="169" name="param" description="" type="string" variable="$type">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="169" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+        <argument line="175">
+          <name>$type</name>
+          <default/>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file ViewHelpers/AssetHelper.php</error>
+    </parse_markers>
+  </file>
+  <file path="ViewHelpers/json_format.php" hash="b5ed4c8227fc708c6875a43f37bd43e4" package="Default">
+    <function namespace="global" line="4" package="Default">
+      <name>json_format</name>
+      <full_name>\json_format</full_name>
+      <argument line="4">
+        <name>$json</name>
+        <default/>
+        <type/>
+      </argument>
+    </function>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file ViewHelpers/json_format.php</error>
+      <error line="4" code="50009">No DocBlock was found for function \json_format()</error>
     </parse_markers>
   </file>
   <package name="Default" full_name="Default"/>
   <package name="eGloo/AssetManager" full_name="eGloo/AssetManager"/>
+  <package name="eGloo/ViewHelpers" full_name="eGloo/ViewHelpers"/>
   <namespace name="AssetManager" full_name="AssetManager">
     <namespace name="Processor" full_name="AssetManager\Processor"/>
   </namespace>
+  <namespace name="ViewHelpers" full_name="ViewHelpers"/>
+  <namespace name="global" full_name="global"/>
   <marker count="0">todo</marker>
   <marker count="0">fixme</marker>
   <deprecated count="0"/>

@@ -35,6 +35,11 @@ class AssetManager {
     self::$config = $config;
   }
 
+  /**
+   * Precompiles assets from $config['compile_file']
+   *
+   * @return void
+   **/
   public static function preCompile () {
     $all_assets = json_decode(file_get_contents(self::$config['compile_file']), true);
     
@@ -66,6 +71,7 @@ class AssetManager {
    * Remove files from directories
    *
    * @param string $dir Directory
+   * @param array $dirs Used for recursive search
    * @return void
    **/
   public static function removeFiles ($dir, $dirs = []) {

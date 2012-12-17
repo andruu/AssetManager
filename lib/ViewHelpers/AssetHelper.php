@@ -10,32 +10,85 @@
 namespace ViewHelpers;
 
 /**
- * undocumented class
+ * Asset Helper
  *
- * @package default
- * @author 
+ * @package eGloo/ViewHelpers
+ * @author Andrew Weir <andru.weir@gmail.com>
  **/
 class AssetHelper {
 
+  /**
+   * Configuration
+   *
+   * @var array
+   **/
   private $config;
+
+  /**
+   * Array of js assets
+   *
+   * @var array
+   **/
   private $js_assets = [];
+
+  /**
+   * Array of css assets
+   *
+   * @var array
+   **/
   private $css_assets = [];
 
+  /**
+   * Template for js html tag
+   *
+   * @var string
+   **/
   private $js_template = '<script src="__PATH__" type="text/javascript"></script>';
+
+  /**
+   * Template for css html tag
+   *
+   * @var string
+   **/
   private $css_template = '<link href="__PATH__" media="all" rel="stylesheet" type="text/css" />';
 
+  /**
+   * Constructor initializes config
+   *
+   * @param array $config Configuration
+   * @return void
+   **/
   public function __construct (Array $config = []) {
     $this->config = $config;
   }
 
+  /**
+   * Push js includes to array
+   *
+   * @param array|string $includes
+   * @return void
+   **/
   public function js_include ($includes) {
     $this->__include($includes, 'js');
   }
 
+  /**
+   * Push css includes to array
+   *
+   * @param array|string $includes
+   * @return void
+   **/
   public function css_include ($includes) {
     $this->__include($includes, 'css'); 
   }
 
+  /**
+   * Push css/js includes to array
+   *
+   * @param array|string $includes
+   * @param string $type
+   * @return void
+   **/
   private function __include ($includes, $type) {
     $asset_type = "{$type}_assets";
     if (is_array($includes)) {
@@ -49,14 +102,30 @@ class AssetHelper {
     }
   }
 
+  /**
+   * Return js html tag
+   *
+   * @return string
+   **/
   public function js_tag () {
     return $this->__tag('js');
   }
 
+  /**
+   * Return css html tag
+   *
+   * @return string
+   **/
   public function css_tag () {
     return $this->__tag('css');
   }
 
+  /**
+   * Return js/css html tag and writes to $config['compile_file'] for pre-compilation
+   *
+   * @param string $type
+   * @return string
+   **/
   private function __tag ($type) {
 
     $asset_type = "{$type}_assets";
@@ -97,7 +166,14 @@ class AssetHelper {
     return str_replace('__PATH__', $path, $this->{$template});
   }
 
+  /**
+   * Writes to $config['compile_file'] for pre-compilation
+   *
+   * @param string $type
+   * @return void
+   **/
   private function __write ($type) {
+    require_once 'json_format.php';
 
     $asset_type = "{$type}_assets";
 
@@ -119,84 +195,6 @@ class AssetHelper {
     file_put_contents($compile_file, json_format(json_encode($assets)));
   }
 }
-
-// Pretty print some JSON 
-// @source http://www.php.net/manual/en/function.json-encode.php#80339
-function json_format ($json) { 
-    $tab = "  "; 
-    $new_json = ""; 
-    $indent_level = 0; 
-    $in_string = false; 
-
-    $json_obj = json_decode($json); 
-
-    if($json_obj === false) 
-        return false; 
-
-    $json = json_encode($json_obj); 
-    $len = strlen($json); 
-
-    for($c = 0; $c < $len; $c++) 
-    { 
-        $char = $json[$c]; 
-        switch($char) 
-        { 
-            case '{': 
-            case '[': 
-                if(!$in_string) 
-                { 
-                    $new_json .= $char . "\n" . str_repeat($tab, $indent_level+1); 
-                    $indent_level++; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case '}': 
-            case ']': 
-                if(!$in_string) 
-                { 
-                    $indent_level--; 
-                    $new_json .= "\n" . str_repeat($tab, $indent_level) . $char; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case ',': 
-                if(!$in_string) 
-                { 
-                    $new_json .= ",\n" . str_repeat($tab, $indent_level); 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case ':': 
-                if(!$in_string) 
-                { 
-                    $new_json .= ": "; 
-                } 
-                else 
-                { 
-                    $new_json .= $char; 
-                } 
-                break; 
-            case '"': 
-                if($c > 0 && $json[$c-1] != '\\') 
-                { 
-                    $in_string = !$in_string; 
-                } 
-            default: 
-                $new_json .= $char; 
-                break;                    
-        } 
-    } 
-    return $new_json; 
-} 
 
 
 
