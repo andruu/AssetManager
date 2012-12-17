@@ -21,7 +21,8 @@
         "richthegeek/phpsass": "dev-master",
         "leafo/lessphp": "dev-master",
         "natxet/CssMin": "dev-master",
-        "nick4fake/jsmin": "dev-master"
+        "nick4fake/jsmin": "dev-master",
+        "twig/twig": "dev-render-function"
     },
     "autoload": {
         "psr-0": {

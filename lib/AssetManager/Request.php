@@ -44,20 +44,26 @@ class Request {
   public function route ($file_name) {
     if (is_array($file_name)) {
       
-      $concat_file_name = md5(serialize($file_name));
+      if ($this->config['environment'] == 'PRODUCTION') {
+        $concat_file_name = md5(serialize($file_name)) . '_' . getenv('LAST_DEPLOYMENT_TIMESTAMP');
+      } else {
+        $concat_file_name = md5(serialize($file_name));
+      }
       
       $assets = [];
       foreach($file_name as $file) {
         $assets[] = $this->handleRoute($file, true, $concat_file_name);
       }
 
-      Processor\Processor::outputContat($assets, $concat_file_name, $this->config['environment']);
+      $return_value = Processor\Processor::outputContat($assets, $concat_file_name, $this->config['environment']);
 
     } else {
       $processor = $this->handleRoute($file_name);
       $processor->process();
-      $processor->output();
+      $return_value = $processor->output();
     }
+
+    return $return_value;
   }
 
   /**
@@ -72,7 +78,7 @@ class Request {
       $processorClassName = "AssetManager\\Processor\\" . ucfirst($type) . 'Processor';
       return $processor = new $processorClassName($file_name, $type, $this->config);
     } else {
-      throw new Exception("Error Processing Request", 1);
+      throw new \Exception("Error Processing Request", 1);
     }
   }
 

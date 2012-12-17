@@ -110,7 +110,7 @@ class Processor {
       return $this->file_name_no_ext . '.' . $ext;
     }, $this->extensions);
 
-    foreach ($this->readDir() as $file) {
+    foreach (self::readDir($this->assets_path) as $file) {
       if (in_array($file, $possible_files)) {
         $extension = explode('.', $file)[count(explode('.', $file)) - 1];
         $this->file = ['file' => $file, 'file_path' => $this->assets_path . DS . $file, 'extension' => $extension];
@@ -138,8 +138,10 @@ class Processor {
     // Figure out public directory
     if ($this->sub_directory) {
       $out_dir = $this->config['public'][$this->type] . $this->sub_directory;
+      $return_value = $this->sub_directory . DS . $this->file_name;
     } else {
       $out_dir = $this->config['public'][$this->type];
+      $return_value = $this->file_name;
     }
     
     // Create public directory if it doesn't exist
@@ -147,6 +149,8 @@ class Processor {
     
     // Write file to directory
     file_put_contents($out_dir . DS . $this->file_name, $this->compiled_file_contents);
+
+    return $return_value;
   }
 
   /**
@@ -184,6 +188,8 @@ class Processor {
     self::makeDir($out_dir);
 
     file_put_contents($out_dir . DS . $concat_file_name . '.' . $type, $file_contents);
+
+    return $concat_file_name . '.' . $type;
   }
 
   /**
@@ -191,7 +197,6 @@ class Processor {
    *
    * @param string $dir Directory to make
    * @return void
-   * @author 
    **/
   public static function makeDir ($dir) {
     if (!is_dir($dir)) {
@@ -204,14 +209,18 @@ class Processor {
    *
    * @return array Files in asset path
    **/
-  public function readDir () {
-    $handle = opendir($this->assets_path);
-    $files_in_dir = [];
-    while (false !== ($file = readdir($handle))) {
-      if($file !== '.' && $file !== '..' && !in_array($file, $files_in_dir)) { 
-        array_push($files_in_dir, $file);
+  public static function readDir ($path) {
+    if (is_dir($path)) {
+      $handle = opendir($path);
+      $files_in_dir = [];
+      while (false !== ($file = readdir($handle))) {
+        if($file !== '.' && $file !== '..' && !in_array($file, $files_in_dir)) { 
+          array_push($files_in_dir, $file);
+        }
       }
+      return $files_in_dir;
+    } else {
+      return [];
     }
-    return $files_in_dir;
   }
 }
