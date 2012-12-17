@@ -57,9 +57,8 @@ class CssProcessor extends Processor {
    *
    * @param string $source
    * @return string
-   * @author 
    **/
   public static function minify ($source) {
-
+    return \CssMin::minify($source);
   }
 }

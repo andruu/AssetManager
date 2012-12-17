@@ -154,9 +154,10 @@ class Processor {
    *
    * @param array $assets Array of assets
    * @param string $concat_file_name MD5 has of assets array
+   * @param string $environment Current environment
    * @return void
    **/
-  public static function outputContat (Array $assets = [], $concat_file_name) {
+  public static function outputContat (Array $assets = [], $concat_file_name, $environment = 'DEVELOPMENT') {
     $file_contents = '';
     $type = $assets[0]->type;
 
@@ -165,6 +166,17 @@ class Processor {
       $file_name = str_replace($type, $asset->file['extension'], $asset->original_file_name);
       $file_contents .= "/* {$file_name} */\n";
       $file_contents .= $asset->compiled_file_contents . "\n";
+    }
+
+    if ($environment == 'PRODUCTION') {
+      switch ($type) {
+        case 'css':
+          $file_contents = CssProcessor::minify($file_contents);
+          break;
+        case 'js':
+          $file_contents = JsProcessor::minify($file_contents);
+          break;
+      }
     }
 
     // Create public directory if it doesn't exist

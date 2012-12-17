@@ -50,8 +50,8 @@ class Request {
       foreach($file_name as $file) {
         $assets[] = $this->handleRoute($file, true, $concat_file_name);
       }
-      
-      Processor\Processor::outputContat($assets, $concat_file_name);
+
+      Processor\Processor::outputContat($assets, $concat_file_name, $this->config['environment']);
 
     } else {
       $processor = $this->handleRoute($file_name);

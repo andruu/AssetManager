@@ -47,9 +47,8 @@ class JsProcessor extends Processor {
    *
    * @param string $source
    * @return string
-   * @author 
    **/
   public static function minify ($source) {
-
+    return \JsMin\Minify::minify($source);
   }
 }
