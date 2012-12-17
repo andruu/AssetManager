@@ -3,8 +3,8 @@
 putenv('LAST_DEPLOYMENT_TIMESTAMP=2012_12_12-12:03:32');
 
 define('DS', DIRECTORY_SEPARATOR);
-define('ENVIRONMENT', 'DEVELOPMENT');
-// define('ENVIRONMENT', 'PRODUCTION');
+// define('ENVIRONMENT', 'DEVELOPMENT');
+define('ENVIRONMENT', 'PRODUCTION');
 define('THEME', 'PetFlow');
 
 require_once 'vendor/autoload.php';
@@ -43,19 +43,22 @@ $asset_config = [
   ]
 ];
 
+// Remove generated files in public
+// AssetManager\AssetManager::init($asset_config);
+// AssetManager\AssetManager::clearCache();
+
+// die;
+
 $asset_helper = new ViewHelpers\AssetHelper($asset_config);
 
 $asset_helper->js_include('application.js');
-$asset_helper->js_include('products/index.js');
+// $asset_helper->js_include('products/index.js');
 $asset_helper->css_include('products/new.css');
-$asset_helper->css_include('products/show.css');
+// $asset_helper->css_include(['products/show.css', 'products/new.css']);
 
 echo $asset_helper->css_tag();
 echo $asset_helper->js_tag();
 
-// Remove generated files in public
-// AssetManager\AssetManager::init($asset_config);
-// AssetManager\AssetManager::clearCache();
 
 // die;
 
@@ -67,7 +70,8 @@ echo $asset_helper->js_tag();
 // $request->route(['application.css', 'products/new.css', 'products/index.css', 'products/show.css']);
 // $request->route(['application.js', 'products/index.js']);
 
-// {{ javascript_include(['application.js', 'products/index.js']) }}
+// {{ assets.js_include(['application.js', 'products/index.js']) }}
+// {{ assets.js_tag() }}
 // <script src="/javascripts/8923674623467832674678234_08787893.js"></script>
 
 // // JavaScript

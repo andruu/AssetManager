@@ -146,10 +146,27 @@ class Processor {
     
     // Create public directory if it doesn't exist
     self::makeDir($out_dir);
+
+    if ($this->config['environment'] == 'PRODUCTION') {
+      switch ($this->type) {
+        case 'css':
+          $this->compiled_file_contents = CssProcessor::minify($this->compiled_file_contents);
+          break;
+        case 'js':
+          $this->compiled_file_contents = JsProcessor::minify($this->compiled_file_contents);
+          break;
+      }
+    }
     
     // Write file to directory
+    if ($this->config['environment'] == 'PRODUCTION') {
+      $this->file_name = $this->file_name_no_ext . '_' . getenv('LAST_DEPLOYMENT_TIMESTAMP') . '.' . $this->type;
+    }
     file_put_contents($out_dir . DS . $this->file_name, $this->compiled_file_contents);
 
+    if (preg_match('/\//', $return_value)) {
+      $return_value = substr($return_value, 1, strlen($return_value));
+    }
     return $return_value;
   }
 

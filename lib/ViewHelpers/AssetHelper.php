@@ -56,24 +56,40 @@ class AssetHelper {
   }
 
   private function __tag ($type) {
+
     $asset_type = "{$type}_assets";
     $template = "{$type}_template";
-    $request = new \AssetManager\Request($this->config);
-    
+
     // Throw exception if no assets have been added
     if (empty($this->{$asset_type})) {
-      throw new \Exception("No css assets have been added.", 1);
+      throw new \Exception("No {$type} assets have been added.", 1);
     }
 
-    // Check how many files in array
-    if (count($this->{$asset_type}) == 1) {
-      $file_name = $request->route($this->{$asset_type}[0]);
+    // If in production return just the path
+    if ($this->config['environment'] == "PRODUCTION") {
+      
+      // Check how many files in array
+      if (count($this->{$asset_type}) == 1) {
+        $file_name = $this->{$asset_type}[0];
+        $file_name = substr($file_name, 0, -((int) strlen($type) + 1)) . '_' . getenv('LAST_DEPLOYMENT_TIMESTAMP') . '.' . $type;
+      } else {
+        $file_name = md5(serialize($this->{$asset_type})) . '_' . getenv('LAST_DEPLOYMENT_TIMESTAMP') . '.' . $type;
+      }
+
     } else {
-      $file_name = $request->route($this->{$asset_type});
+
+      // Compile new asset files
+      $request = new \AssetManager\Request($this->config);
+
+      // Check how many files in array
+      if (count($this->{$asset_type}) == 1) {
+        $file_name = $request->route($this->{$asset_type}[0]);
+      } else {
+        $file_name = $request->route($this->{$asset_type});
+      }
     }
 
-    $path = $this->config['cdn'][$this->config['environment']] . $this->config['web'][$type] . DS . $file_name;
-
+    $path = $this->config['cdn'][$this->config['environment']] . $this->config['web'][$type] . DS . $file_name;      
     return str_replace('__PATH__', $path, $this->{$template});
   }
 }
