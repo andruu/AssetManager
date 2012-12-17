@@ -35,6 +35,20 @@ class AssetManager {
     self::$config = $config;
   }
 
+  public static function preCompile () {
+    $all_assets = json_decode(file_get_contents(self::$config['compile_file']), true);
+    
+    $request = new \AssetManager\Request(self::$config);
+    foreach ($all_assets as $type => $assets) {
+      foreach ($assets as $asset) {
+        if (count($asset) == 1) {
+          $asset = $asset[0];
+        }
+        $request->route($asset);
+      }
+    }
+  }
+
   /**
    * Remove generated files in public assets directories
    *

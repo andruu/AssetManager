@@ -19,6 +19,7 @@ $assets_dir = __DIR__ . DS . 'Application.gloo' . DS . 'InterfaceBundles' . DS .
 
 // Yaml file maybe?
 $asset_config = [
+  'compile_file' => __DIR__ . DS . 'asset_manager.json',
   'environment' => ENVIRONMENT,
   'cdn' => [
     'DEVELOPMENT' => '/',
@@ -44,20 +45,22 @@ $asset_config = [
 ];
 
 // Remove generated files in public
-// AssetManager\AssetManager::init($asset_config);
-// AssetManager\AssetManager::clearCache();
+AssetManager\AssetManager::init($asset_config);
+AssetManager\AssetManager::clearCache();
+AssetManager\AssetManager::preCompile();
 
 // die;
 
-$asset_helper = new ViewHelpers\AssetHelper($asset_config);
+// $asset_helper = new ViewHelpers\AssetHelper($asset_config);
 
-$asset_helper->js_include('application.js');
+// $asset_helper->css_include('application.css');
+// $asset_helper->js_include('application.js');
 // $asset_helper->js_include('products/index.js');
-$asset_helper->css_include('products/new.css');
+// $asset_helper->css_include('products/new.css');
 // $asset_helper->css_include(['products/show.css', 'products/new.css']);
 
-echo $asset_helper->css_tag();
-echo $asset_helper->js_tag();
+// echo $asset_helper->css_tag();
+// echo $asset_helper->js_tag();
 
 
 // die;

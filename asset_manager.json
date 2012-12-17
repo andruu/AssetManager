@@ -1,0 +1,18 @@
+{
+  "css": [
+    [
+      "application.css",
+      "products\/new.css",
+      "products\/show.css"
+    ]
+  ],
+  "js": [
+    [
+      "application.js",
+      "products\/index.js"
+    ],
+    [
+      "application.js"
+    ]
+  ]
+}

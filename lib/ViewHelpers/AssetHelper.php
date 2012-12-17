@@ -40,7 +40,9 @@ class AssetHelper {
     $asset_type = "{$type}_assets";
     if (is_array($includes)) {
       foreach ($includes as $include) {
-        $this->{$asset_type}[] = $include;
+        if (!in_array($include, $this->{$asset_type})) {
+          $this->{$asset_type}[] = $include;
+        }
       }
     } else {
       $this->{$asset_type}[] = $includes;
@@ -89,14 +91,112 @@ class AssetHelper {
       }
     }
 
+    $this->__write($type);
+
     $path = $this->config['cdn'][$this->config['environment']] . $this->config['web'][$type] . DS . $file_name;      
     return str_replace('__PATH__', $path, $this->{$template});
   }
+
+  private function __write ($type) {
+
+    $asset_type = "{$type}_assets";
+
+    $compile_file = $this->config['compile_file'];
+    
+    // Create file if it doesn't exist
+    if (!file_exists($compile_file)) {
+      file_put_contents($compile_file, null);
+    }
+
+    // Open compile file and turn into PHP array
+    $assets = json_decode(file_get_contents($compile_file), true);
+    $assets[$type][] = $this->{$asset_type};
+
+    // Clean duplicates
+    $assets[$type] = array_map("unserialize", array_unique(array_map("serialize", $assets[$type])));
+
+    // Write back to file
+    file_put_contents($compile_file, json_format(json_encode($assets)));
+  }
 }
 
+// Pretty print some JSON 
+// @source http://www.php.net/manual/en/function.json-encode.php#80339
+function json_format ($json) { 
+    $tab = "  "; 
+    $new_json = ""; 
+    $indent_level = 0; 
+    $in_string = false; 
 
+    $json_obj = json_decode($json); 
 
+    if($json_obj === false) 
+        return false; 
 
+    $json = json_encode($json_obj); 
+    $len = strlen($json); 
+
+    for($c = 0; $c < $len; $c++) 
+    { 
+        $char = $json[$c]; 
+        switch($char) 
+        { 
+            case '{': 
+            case '[': 
+                if(!$in_string) 
+                { 
+                    $new_json .= $char . "\n" . str_repeat($tab, $indent_level+1); 
+                    $indent_level++; 
+                } 
+                else 
+                { 
+                    $new_json .= $char; 
+                } 
+                break; 
+            case '}': 
+            case ']': 
+                if(!$in_string) 
+                { 
+                    $indent_level--; 
+                    $new_json .= "\n" . str_repeat($tab, $indent_level) . $char; 
+                } 
+                else 
+                { 
+                    $new_json .= $char; 
+                } 
+                break; 
+            case ',': 
+                if(!$in_string) 
+                { 
+                    $new_json .= ",\n" . str_repeat($tab, $indent_level); 
+                } 
+                else 
+                { 
+                    $new_json .= $char; 
+                } 
+                break; 
+            case ':': 
+                if(!$in_string) 
+                { 
+                    $new_json .= ": "; 
+                } 
+                else 
+                { 
+                    $new_json .= $char; 
+                } 
+                break; 
+            case '"': 
+                if($c > 0 && $json[$c-1] != '\\') 
+                { 
+                    $in_string = !$in_string; 
+                } 
+            default: 
+                $new_json .= $char; 
+                break;                    
+        } 
+    } 
+    return $new_json; 
+} 
 
 
 
