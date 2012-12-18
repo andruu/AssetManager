@@ -5,7 +5,7 @@ Compiles Less, Sass, SCSS and CoffeeScript into CSS/JS and concatenates and mini
 
 ## Installation
 
-The recommended way to install Polytalk is [through composer](http://getcomposer.org/).
+The recommended way to install AssetManager is [through composer](http://getcomposer.org/).
 
 ```javascript
 "require": {
