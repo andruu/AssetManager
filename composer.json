@@ -6,6 +6,7 @@
             "email": "andru.weir@gmail.com"
         }
     ],
+    "minimum-stability": "dev",
     "description": "Compiles Less, Sass, SCSS and CoffeeScript into CSS/JS and concatenates and minifies files.",
     "keywords": [
         "less",
@@ -21,8 +22,7 @@
         "richthegeek/phpsass": "dev-master",
         "leafo/lessphp": "dev-master",
         "natxet/CssMin": "dev-master",
-        "nick4fake/jsmin": "dev-master",
-        "twig/twig": "dev-render-function"
+        "nick4fake/jsmin": "dev-master"
     },
     "autoload": {
         "psr-0": {

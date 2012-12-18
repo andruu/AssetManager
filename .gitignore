@@ -1,4 +1,7 @@
 vendor
 public
+docs
+Application.gloo
+asset_manager.json
 composer.lock
 *.DS_Store

@@ -1,14 +1,13 @@
 <?php 
-
 putenv('LAST_DEPLOYMENT_TIMESTAMP=2012_12_12-12:03:32');
-
-define('DS', DIRECTORY_SEPARATOR);
-define('ENVIRONMENT', 'DEVELOPMENT');
-// define('ENVIRONMENT', 'PRODUCTION');
+if (!defined('DS')) {
+    define('DS', DIRECTORY_SEPARATOR);
+}
+// define('ENVIRONMENT', 'DEVELOPMENT');
+define('ENVIRONMENT', 'PRODUCTION');
 define('THEME', 'PetFlow');
 
 require_once 'vendor/autoload.php';
-require_once 'lib/ViewHelpers/AssetHelper.php';
 require_once 'lib/AssetManager/AssetManager.php';
 require_once 'lib/AssetManager/Request.php';
 require_once 'lib/AssetManager/Processor/Processor.php';
@@ -45,9 +44,9 @@ $asset_config = [
 ];
 
 // Remove generated files in public
-// AssetManager\AssetManager::init($asset_config);
-// AssetManager\AssetManager::clearCache();
-// AssetManager\AssetManager::preCompile();
+AssetManager\AssetManager::init($asset_config);
+AssetManager\AssetManager::clearCache();
+AssetManager\AssetManager::preCompile();
 
 // die;
 
